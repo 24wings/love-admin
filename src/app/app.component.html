@@ -1,0 +1,12 @@
+<div *ngIf="isSignIn">
+
+  <topbar></topbar>
+  <sidebar></sidebar>
+
+
+</div>
+
+
+<div *ngIf="!isSignIn">
+  <app-signin></app-signin>
+</div>

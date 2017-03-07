@@ -1,0 +1,33 @@
+<div class="content-top ">
+  <h1 class="content-title">用户管理</h1>
+
+  <ul class="breadcrumb al-breadcrumb">
+    <li class="breadcrumb-item"><a routerlink="/pages/dashboard">主页</a></li>
+    <li class="breadcrumb-item active" style="color:#fff;">用户管理</li>
+  </ul>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <h3 class="card-title">我的用户</h3>
+  </div>
+
+  <table class="smart-table">
+    <thead>
+      <th>操作</th>
+      <th *ngFor="let field of fields;let i  =index">{{field.label}}
+        <th>
+    </thead>
+    <tr *ngFor="let user of users">
+      <td>
+        <a (click)="editUser()"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+        <a (click)="deleteUser(user._id)"><i class="fa fa-trash" ></i></a>
+      </td>
+      <td *ngFor="let field of fields;">
+        {{user[field.value]}}
+      </td>
+    </tr>
+
+  </table>
+
+</div>

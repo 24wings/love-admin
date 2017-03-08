@@ -1,0 +1,35 @@
+<div class="content-top ">
+    <h1 class="content-title">周记录</h1>
+
+    <ul class="breadcrumb al-breadcrumb">
+        <li class="breadcrumb-item"><a routerlink="/pages/dashboard">主页</a></li>
+        <li class="breadcrumb-item active" style="color:#fff;">周记录</li>
+    </ul>
+</div>
+
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">活动周记录</h3>
+    </div>
+    <div class="card-body">
+        <table class="smart-table">
+            <thead>
+                <th>记录创建时间</th>
+                <th>记录参与人数</th>
+                <th>记录截止时间</th>
+
+            </thead>
+            <tr *ngFor="let weekRecord of weekRecords">
+                <td>{{weekRecord.createDt}}</td>
+                <td>{{weekRecord.s}}</td>
+                <td>{{weekRecord.createDt}}</td>
+
+            </tr>
+        </table>
+    </div>
+
+    <button class="btn btn-success btn-lg" (click)="startNewWeekRecord()">开始新的活动</button>
+
+
+
+</div>

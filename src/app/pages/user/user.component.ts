@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Http } from '@angular/http';
 @Component({
   selector: 'app-user',
@@ -23,7 +24,7 @@ export class UserComponent implements OnInit {
     value: 'state'
   }];
   users: any = [];
-  constructor(public http: Http) {
+  constructor(public http: Http, public router: Router) {
 
     this.refershTable();
 
@@ -38,7 +39,7 @@ export class UserComponent implements OnInit {
       } else {
         alert(result.data);
       }
-    })
+    });
 
   }
 
@@ -56,5 +57,9 @@ export class UserComponent implements OnInit {
       }
 
     });
+  }
+
+  goUserDetail(_id: String) {
+    this.router.navigateByUrl('/user-detail/' + _id);
   }
 }

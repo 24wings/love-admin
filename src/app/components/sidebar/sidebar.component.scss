@@ -1,49 +1,49 @@
 .al-sidebar {
-  width: 180px;
-  top: 66px;
-  left: 0;
-  z-index: 1001;
-  display: block;
-  min-height: 100%;
-  background-color: #282828;
-  height: 100%;
-  position: fixed;
+    width: 180px;
+    top: 66px;
+    left: 0;
+    z-index: 1001;
+    display: block;
+    min-height: 100%;
+    background-color: #282828;
+    height: 100%;
+    position: fixed;
 }
 
 .al-sidebar-list {
-  margin: 0;
-  overflow: hidden;
-  padding: 18px 0 0 0;
-  list-style: none;
+    margin: 0;
+    overflow: hidden;
+    padding: 18px 0 0 0;
+    list-style: none;
 }
 
 .al-sidebar-list-item {
-  display: block;
-  position: relative;
-  float: none;
-  padding: 0;
+    display: block;
+    position: relative;
+    float: none;
+    padding: 0;
 }
 
 a.al-sidebar-list-link {
-  display: block;
-  height: 42px;
-  padding-left: 18px;
-  text-shadow: none;
-  font-size: 13px;
-  text-decoration: none;
-  color: #fff;
-  line-height: 42px;
-  white-space: nowrap;
-  overflow: hidden;
-  cursor: pointer;
+    display: block;
+    height: 42px;
+    padding-left: 18px;
+    text-shadow: none;
+    font-size: 13px;
+    text-decoration: none;
+    color: #fff;
+    line-height: 42px;
+    white-space: nowrap;
+    overflow: hidden;
+    cursor: pointer;
 }
 
 a.al-sidebar-list-link:hover {
-  color: #00abff;
+    color: #00abff;
 }
 
 .al-sidebar-list-link .fa {
-  margin-right: 18px;
-  width: 16px;
-  display: inline-block;
+    margin-right: 18px;
+    width: 16px;
+    display: inline-block;
 }

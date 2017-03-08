@@ -1,0 +1,9 @@
+<div class="btn-group" dropdown>
+    <button type="button" class="btn btn-primary" dropdownToggle>
+    {{options[0]}} <span class="caret"></span>
+  </button>
+    <ul dropdownMenu role="menu" aria-labelledby="single-button">
+        <li (click)="emitSelectEvent(option)" role="menuitem" *ngFor="let option of options"><a class="dropdown-item">{{option}}</a></li>
+
+    </ul>
+</div>

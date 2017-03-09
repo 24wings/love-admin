@@ -1,0 +1,65 @@
+<div class="content-top ">
+    <h1 class="content-title">爱情匹配</h1>
+
+    <ul class="breadcrumb al-breadcrumb">
+        <li class="breadcrumb-item"><a routerlink="/pages/dashboard">主页</a></li>
+        <li class="breadcrumb-item active" style="color:#fff;">爱情匹配</li>
+
+    </ul>
+    <h4>活动创建于 {{record.creatDt | date:'yyyy年MM月dd日'}}
+    </h4>
+</div>
+
+<div class="row">
+    <!--男性-->
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">男生</div>
+            </div>
+            <div class="card-body">
+                <div class="smart-table">
+                    <thead>
+                        <th>姓名</th>
+                        <th>手机号</th>
+                        <th>性别:</th>
+                        <th>年龄</th>
+                        <th>希望的年龄</th>
+                        <th>希望的地域</th>
+                        <th>性取向</th>
+                    </thead>
+                    <tr *ngFor="let boy of boys">
+                        <td>{{boy.name}}</td>
+                        <td>{{boy.phone}}</td>
+                        <td>{{boy.gender}}</td>
+                        <td>{{boy.age}}</td>
+                        <td>{{boy.filterAge.label}}</td>
+                        <td>{{boy.filterCity.label}}</td>
+                        <td>{{boy.filterGender.label}}</td>
+
+
+                    </tr>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+
+    <!--女生-->
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">活动创建于 {{record.creatDt | date:'yyyy年MM月dd日'}}</div>
+            </div>
+            <div class="card-body">
+                <div class="row">
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>

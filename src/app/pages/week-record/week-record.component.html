@@ -17,12 +17,30 @@
                 <th>记录创建时间</th>
                 <th>记录参与人数</th>
                 <th>记录截止时间</th>
-
+                <th>完结</th>
+                <th>管理</th>
             </thead>
             <tr *ngFor="let weekRecord of weekRecords">
-                <td>{{weekRecord.createDt}}</td>
-                <td>{{weekRecord.s}}</td>
-                <td>{{weekRecord.createDt}}</td>
+                <td>{{weekRecord.creatDt | date: 'yyyy年MM月dd日' }}</td>
+                <td>{{weekRecord.peoples.length}}</td>
+                <td>{{weekRecord.finishDt?weekRecord.finishDt:'尚未结束'}}</td>
+                <td *ngIf="weekRecord.isActive">
+                    <button class="btn btn-info">
+                        <a routerLink="/match/{{weekRecord._id}}" style="color:#fff">开始匹配</a>
+
+                    </button>
+                </td>
+                <td *ngIf="!weekRecord.isActive">
+                    <button class="btn btn-default">已完结</button>
+                </td>
+                <td>
+                    <button class="btn btn-info">
+                        <a routerLink="/match/{{weekRecord._id}}" style="color:#fff">详情</a>
+
+                    </button>
+                    <button class="btn btn-danger" (click)="deleteWeekRecord(weekRecord)">删除</button>
+                </td>
+
 
             </tr>
         </table>

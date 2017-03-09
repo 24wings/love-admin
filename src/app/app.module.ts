@@ -15,6 +15,7 @@ import { UserDetailComponent } from './pages/user-detail/user-detail.component';
 import 'rxjs/add/operator/map';
 import { BsSelectComponent } from './components/bs-select/bs-select.component';
 import { WeekRecordComponent } from './pages/week-record/week-record.component';
+import { MatchComponent } from './pages/match/match.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +25,8 @@ import { WeekRecordComponent } from './pages/week-record/week-record.component';
     UserComponent,
     UserDetailComponent,
     BsSelectComponent,
-    WeekRecordComponent
+    WeekRecordComponent,
+    MatchComponent
   ],
   imports: [
     BrowserModule,
@@ -40,6 +42,10 @@ import { WeekRecordComponent } from './pages/week-record/week-record.component';
       }, {
         path: 'weekRecord',
         component: WeekRecordComponent
+      },
+      {
+        path: 'match/:recordWeekId',
+        component: MatchComponent
       }
     ]),
     ModalModule.forRoot(),

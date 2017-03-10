@@ -24,19 +24,24 @@
                 <td>{{weekRecord.creatDt | date: 'yyyy年MM月dd日' }}</td>
                 <td>{{weekRecord.peoples.length}}</td>
                 <td>{{weekRecord.finishDt?weekRecord.finishDt:'尚未结束'}}</td>
-                <td *ngIf="weekRecord.isActive">
+                <td *ngIf="weekRecord.isActive&& weekRecord.state==0">
                     <button class="btn btn-info">
                         <a routerLink="/match/{{weekRecord._id}}" style="color:#fff">开始匹配</a>
 
                     </button>
                 </td>
-                <td *ngIf="!weekRecord.isActive">
+                <td *ngIf="!weekRecord.isActive && weekRecord.state==1">
+                    <button class="btn btn-success">正在进行</button>
+                </td>
+
+                <td *ngIf="!weekRecord.isActive && weekRecord.state==2">
                     <button class="btn btn-default">已完结</button>
                 </td>
+
                 <td>
+                    <button class="btn btn-primary" *ngIf="!weekRecord.isActive && weekRecord.state==1" (click)="finishWeekRecord(weekRecord)">完结</button>
                     <button class="btn btn-info">
                         <a routerLink="/match/{{weekRecord._id}}" style="color:#fff">详情</a>
-
                     </button>
                     <button class="btn btn-danger" (click)="deleteWeekRecord(weekRecord)">删除</button>
                 </td>

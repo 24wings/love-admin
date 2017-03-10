@@ -22,7 +22,7 @@ export class WeekRecordComponent implements OnInit {
     /**
      * 若有尚未完成的记录，则提交记录
      */
-    if (this.weekRecords.some(weekRecords => weekRecords.isActive === true)) {
+    if (this.weekRecords.some(weekRecords => weekRecords.isActive === true || weekRecords.state !== 2)) {
       alert('有尚未完成的活动,请先结束激活的活动');
     } else {
       this.http.get(this.appConfig.serverIp + 'recordWeek/newRecordWeek').subscribe(rtn => {
@@ -57,6 +57,7 @@ export class WeekRecordComponent implements OnInit {
 
   finishWeekRecord(weekRecord: any) {
     weekRecord.isActive = false;
+    weekRecord.state = 2;
     /**
      * 一般在这里要先进行匹配,才能执行成功 
      */

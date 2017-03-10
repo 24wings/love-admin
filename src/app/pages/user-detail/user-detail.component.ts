@@ -78,7 +78,7 @@ export class UserDetailComponent implements OnInit {
         alert(result.data);
       }
 
-    })
+    });
   }
 
   reset() {

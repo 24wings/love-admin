@@ -6,8 +6,13 @@
         <li class="breadcrumb-item active" style="color:#fff;">爱情匹配</li>
 
     </ul>
-    <h4>活动创建于 {{record.creatDt | date:'yyyy年MM月dd日'}}
-    </h4>
+    <h2 style="color: #fff;
+    display: block;
+    float: right;
+        margin-top: 31px;
+    ">活动创建于 {{record.creatDt | date:'yyyy年MM月dd日'}}
+    </h2>
+
 </div>
 
 <div class="row">
@@ -18,7 +23,7 @@
                 <div class="card-title">男生</div>
             </div>
             <div class="card-body">
-                <div class="smart-table">
+                <table class="smart-table table">
                     <thead>
                         <th>姓名</th>
                         <th>手机号</th>
@@ -27,8 +32,10 @@
                         <th>希望的年龄</th>
                         <th>希望的地域</th>
                         <th>性取向</th>
+                        <th>基础分</th>
+                        <th>操作</th>
                     </thead>
-                    <tr *ngFor="let boy of boys">
+                    <tr *ngFor="let boy of boys" [class.isSelected]="boy.isSelected">
                         <td>{{boy.name}}</td>
                         <td>{{boy.phone}}</td>
                         <td>{{boy.gender}}</td>
@@ -36,10 +43,11 @@
                         <td>{{boy.filterAge.label}}</td>
                         <td>{{boy.filterCity.label}}</td>
                         <td>{{boy.filterGender.label}}</td>
-
+                        <td>{{boy.baseScore}}</td>
+                        <td><button class="btn btn-success btn-sm" (click)="startMatchOne(boy)">匹配</button> </td>
 
                     </tr>
-                </div>
+                </table>
 
 
             </div>
@@ -51,15 +59,106 @@
     <div class="col-md-6">
         <div class="card">
             <div class="card-header">
-                <div class="card-title">活动创建于 {{record.creatDt | date:'yyyy年MM月dd日'}}</div>
+                <div class="card-title">女生</div>
             </div>
             <div class="card-body">
-                <div class="row">
+                <table class="smart-table table">
+                    <thead>
+                        <th>姓名</th>
+                        <th>手机号</th>
+                        <th>性别:</th>
+                        <th>年龄</th>
+                        <th>希望的年龄</th>
+                        <th>希望的地域</th>
+                        <th>性取向</th>
+                        <th>基础分</th>
+                    </thead>
+                    <tr *ngFor="let girl of girls;let i= index;" [class.isSelected]="girl.isSelected">
+                        <td>{{girl.name}}</td>
+                        <td>{{girl.phone}}</td>
+                        <td>{{girl.gender}}</td>
+                        <td>{{girl.age}}</td>
+                        <td>{{girl.filterAge.label}}</td>
+                        <td>{{girl.filterCity.label}}</td>
+                        <td>{{girl.filterGender.label}}</td>
+                        <td>{{girl.baseScore}}</td>
+                        <td><button class="btn btn-success btn-sm" (click)="startMatchOne(girl)">匹配</button> </td>
 
-                </div>
+                    </tr>
+                </table>
 
             </div>
         </div>
     </div>
+
+</div>
+<button class="btn btn-success btn-lg" (click)="startMatch()">开始进行大匹配</button>
+
+
+
+
+
+
+<div class="row" *ngIf="matchPairs.length>0">
+    <!--男性-->
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">匹配结果</div>
+            </div>
+            <div class="card-body">
+                <table class="smart-table table">
+                    <thead>
+                        <th>男方姓名</th>
+                        <th>手机号</th>
+                        <th>性别:</th>
+                        <th>年龄</th>
+                        <th>希望的年龄</th>
+                        <th>详细信息</th>
+                        <th>女方姓名</th>
+                        <th>手机号</th>
+                        <th>性取向</th>
+                        <th>手机号</th>
+                        <th>基础分(问答题)</th>
+
+                    </thead>
+                    <tr *ngFor="let pair of matchPairs;let i = index" [style.backgroundColor]="getColor(i)">
+                        <td>{{pair.boy.name}}</td>
+                        <td>{{pair.boy.phone}}</td>
+                        <td>{{pair.boy.gender}}</td>
+                        <td>{{pair.boy.age}}</td>
+                        <td>{{pair.boy.baseScore}}</td>
+                        <td><button class="btn-primary btn-sm">个人信息</button></td>
+                        <td>{{pair.girl.name}}</td>
+                        <td>{{pair.girl.phone}}</td>
+                        <td>{{pair.girl.gender}}</td>
+                        <td>{{pair.girl.age}}</td>
+                        <td>{{pair.girl.baseScore}}</td>
+                        <td><button class="btn-primary btn btn-sm">个人信息</button></td>
+                    </tr>
+
+
+                </table>
+
+                <table class="smart-table table">
+                    <thead>
+                        <th>落单男生</th>
+                    </thead>
+                    <tr *ngFor="let boy of looseMatchBoys;" style="background-color: black;">
+                        <td>{{boy.name}}</td>
+                        <td>{{boy.phone}}</td>
+                        <td>{{boy.gender}}</td>
+                        <td>{{boy.age}}</td>
+                        <td>{{boy.baseScore}}</td>
+                    </tr>
+                </table>
+
+                <button class="btn btn-danger btn-lg" (click)="publishMatchResult()">发布匹配结果</button>
+            </div>
+        </div>
+    </div>
+
+
+
 
 </div>

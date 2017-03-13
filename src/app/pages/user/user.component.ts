@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Http } from '@angular/http';
+import { AppConfigService } from '../../services/index';
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
@@ -24,16 +25,15 @@ export class UserComponent implements OnInit {
     value: 'state'
   }];
   users: any = [];
-  constructor(public http: Http, public router: Router) {
+  constructor(public http: Http, public router: Router, public appConfig: AppConfigService) {
 
     this.refershTable();
 
   }
 
   deleteUser(_id: String) {
-    this.http.delete('http://localhost:3000/rest.player?_id=' + _id).subscribe(rtn => {
+    this.http.delete(this.appConfig.serverIp + '/rest.player?_id=' + _id).subscribe(rtn => {
       const result = rtn.json();
-
       if (result.issuccess) {
         this.refershTable();
       } else {

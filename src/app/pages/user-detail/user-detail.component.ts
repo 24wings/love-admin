@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { AppConfigService } from '../../services';
 // import 'rxjs/add/operator/map';
 @Component({
   selector: 'app-user-detail',
@@ -34,7 +35,10 @@ export class UserDetailComponent implements OnInit {
   }];
 
 
-  constructor(public http: Http, public router: Router, public route: ActivatedRoute) {
+  constructor(public http: Http,
+    public router: Router,
+    public route: ActivatedRoute,
+    public appConfig: AppConfigService) {
     this.route.params.map(params => params['_id']).subscribe(_id => {
       this.refershForm(_id);
     });
@@ -56,7 +60,7 @@ export class UserDetailComponent implements OnInit {
   }
 
   refershForm(_id: String) {
-    this.http.get('http://localhost:3000/rest.player?_id=' + _id)
+    this.http.get(this.appConfig.serverIp + 'rest.player?_id=' + _id)
       .map(rtn => rtn.json())
       .subscribe(result => {
         if (result.issuccess) {
@@ -70,7 +74,7 @@ export class UserDetailComponent implements OnInit {
   }
 
   update() {
-    this.http.put('http://localhost:3000/rest.player', this.user).subscribe(rtn => {
+    this.http.put(this.appConfig.serverIp + '/rest.player', this.user).subscribe(rtn => {
       const result = rtn.json();
       if (result.issuccess) {
         console.log(result);

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Http } from '@angular/http';
-import { AppConfigService } from '../../services/index';
+import { AppConfigService } from '../../services';
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
@@ -48,7 +48,7 @@ export class UserComponent implements OnInit {
   }
 
   refershTable() {
-    this.http.get('http://localhost:3000/rest.player').subscribe(rtn => {
+    this.http.get(this.appConfig.serverIp + '/rest.player').subscribe(rtn => {
       const result = rtn.json();
       if (result.issuccess) {
         this.users = result.data;

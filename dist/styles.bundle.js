@@ -1,23 +1,80 @@
 webpackJsonp([2,4],{
 
-/***/ 1051:
+/***/ 1094:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(575);
+module.exports = __webpack_require__(589);
 
 
 /***/ }),
 
-/***/ 575:
+/***/ 26:
+/***/ (function(module, exports) {
+
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+// css base code, injected by the css-loader
+module.exports = function() {
+	var list = [];
+
+	// return the list of modules as css string
+	list.toString = function toString() {
+		var result = [];
+		for(var i = 0; i < this.length; i++) {
+			var item = this[i];
+			if(item[2]) {
+				result.push("@media " + item[2] + "{" + item[1] + "}");
+			} else {
+				result.push(item[1]);
+			}
+		}
+		return result.join("");
+	};
+
+	// import a list of modules into the list
+	list.i = function(modules, mediaQuery) {
+		if(typeof modules === "string")
+			modules = [[null, modules, ""]];
+		var alreadyImportedModules = {};
+		for(var i = 0; i < this.length; i++) {
+			var id = this[i][0];
+			if(typeof id === "number")
+				alreadyImportedModules[id] = true;
+		}
+		for(i = 0; i < modules.length; i++) {
+			var item = modules[i];
+			// skip already imported module
+			// this implementation is not 100% perfect for weird media query combinations
+			//  when a module is imported multiple times with different media queries.
+			//  I hope this will never occur (Hey this way we have smaller bundles)
+			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
+				if(mediaQuery && !item[2]) {
+					item[2] = mediaQuery;
+				} else if(mediaQuery) {
+					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
+				}
+				list.push(item);
+			}
+		}
+	};
+	return list;
+};
+
+
+/***/ }),
+
+/***/ 589:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(578);
+var content = __webpack_require__(592);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
-var update = __webpack_require__(577)(content, {});
+var update = __webpack_require__(591)(content, {});
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -35,7 +92,7 @@ if(false) {
 
 /***/ }),
 
-/***/ 577:
+/***/ 591:
 /***/ (function(module, exports) {
 
 /*
@@ -288,77 +345,20 @@ function updateLink(linkElement, obj) {
 
 /***/ }),
 
-/***/ 578:
+/***/ 592:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(59)();
+exports = module.exports = __webpack_require__(26)();
 // imports
 
 
 // module
-exports.push([module.i, "/* You can add global styles to this file, and also import other style files */\nbody {\n  margin: 0;\n  padding: 0; }\n  body a {\n    text-decoration: none !important;\n    -webkit-transition: color 0.2s ease;\n    transition: color 0.2s ease; }\n  body ul {\n    list-style: none; }\n\n.card.customClass,\n.card.customClass .card-header,\n.panel.customClass {\n  background-color: #282828;\n  color: #fff; }\n\n.panel.customClass .panel-body {\n  border-top: none !important;\n  background-color: #282828; }\n", ""]);
+exports.push([module.i, "/* You can add global styles to this file, and also import other style files */\nbody {\n  margin: 0;\n  padding: 0; }\n  body a {\n    text-decoration: none !important;\n    -webkit-transition: color 0.2s ease;\n    transition: color 0.2s ease; }\n  body ul {\n    list-style: none; }\n\n.card.customClass,\n.card.customClass .card-header,\n.panel.customClass {\n  background-color: #282828;\n  color: #fff; }\n\n.panel.customClass .panel-body {\n  border-top: none !important;\n  background-color: #282828; }\n\n.card {\n  color: #fff;\n  background-color: rgba(255, 255, 255, 0.1);\n  border: 0;\n  border-radius: 7px;\n  position: relative;\n  margin-bottom: 24px;\n  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.15);\n  border-bottom: 1px solid rgba(255, 255, 255, 0.3);\n  font-size: 16px;\n  padding: 14px 22px;\n  margin-top: 44px; }\n\n.card .card-header {\n  color: #fff;\n  border-bottom-left-radius: 0;\n  border-bottom-right-radius: 0;\n  margin-bottom: 40px;\n  border-bottom: 1px solid rgba(255, 255, 255, 0.3);\n  font-size: 16px;\n  padding: 14px 22px;\n  background-color: transparent; }\n\n.card .card-title {\n  font-weight: 400;\n  font-size: 26px;\n  text-transform: uppercase;\n  opacity: 0.9;\n  color: #fff; }\n\n.content-top {\n  padding-top: 36px;\n  padding-bottom: 75px; }\n\n.card-body {\n  margin-bottom: 200px; }\n\n.content-title {\n  font-family: \"Roboto\", sans-serif;\n  font-weight: 700;\n  color: #fff;\n  float: left;\n  width: auto;\n  margin-left: 122px;\n  padding: 0;\n  font-size: 24px;\n  text-transform: uppercase;\n  opacity: 0.9; }\n\n.al-breadcrumb {\n  background: none;\n  color: #fff;\n  padding: 0;\n  margin: 0;\n  float: right;\n  margin-right: 100px;\n  padding-top: 11px; }\n\n.breadcrumb-item {\n  float: left; }\n\n.breadcrumb-item + .breadcrumb-item:before {\n  display: inline-block;\n  padding-right: .5rem;\n  padding-left: .5rem;\n  color: #818a91;\n  content: \"/\"; }\n\n#page-content a {\n  color: #4dc4ff;\n  text-decoration: none !important;\n  -webkit-transition: color 0.2s ease;\n  transition: color 0.2s ease; }\n\n.smart-table {\n  font-family: \"Open Sans\", \"Helvetica Neue\", Helvetica, Arial, sans-serif;\n  font-size: 16px;\n  line-height: 1.5;\n  color: #606c71;\n  border-collapse: collapse;\n  border-spacing: 0;\n  display: table;\n  width: 100%;\n  max-width: 100%;\n  overflow: auto;\n  word-break: normal;\n  word-break: keep-all;\n  background-color: transparent; }\n\n.smart-table thead {\n  color: #fff; }\n\n.smart-table tr {\n  color: #fff; }\n\n.fa {\n  font-size: 20px;\n  color: #fff;\n  cursor: pointer; }\n\nsidebar .card-title {\n  font-size: 16px !important; }\n\n::-webkit-input-placeholder {\n  /* Chrome */\n  color: #fff; }\n\n:-ms-input-placeholder {\n  /* IE 10+ */\n  color: #fff; }\n\n::-moz-placeholder {\n  /* Firefox 19+ */\n  color: #fff;\n  opacity: 1; }\n\n:-moz-placeholder {\n  /* Firefox 4 - 18 */\n  color: #fff;\n  opacity: 1; }\n", ""]);
 
 // exports
 
 
-/***/ }),
-
-/***/ 59:
-/***/ (function(module, exports) {
-
-/*
-	MIT License http://www.opensource.org/licenses/mit-license.php
-	Author Tobias Koppers @sokra
-*/
-// css base code, injected by the css-loader
-module.exports = function() {
-	var list = [];
-
-	// return the list of modules as css string
-	list.toString = function toString() {
-		var result = [];
-		for(var i = 0; i < this.length; i++) {
-			var item = this[i];
-			if(item[2]) {
-				result.push("@media " + item[2] + "{" + item[1] + "}");
-			} else {
-				result.push(item[1]);
-			}
-		}
-		return result.join("");
-	};
-
-	// import a list of modules into the list
-	list.i = function(modules, mediaQuery) {
-		if(typeof modules === "string")
-			modules = [[null, modules, ""]];
-		var alreadyImportedModules = {};
-		for(var i = 0; i < this.length; i++) {
-			var id = this[i][0];
-			if(typeof id === "number")
-				alreadyImportedModules[id] = true;
-		}
-		for(i = 0; i < modules.length; i++) {
-			var item = modules[i];
-			// skip already imported module
-			// this implementation is not 100% perfect for weird media query combinations
-			//  when a module is imported multiple times with different media queries.
-			//  I hope this will never occur (Hey this way we have smaller bundles)
-			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
-				if(mediaQuery && !item[2]) {
-					item[2] = mediaQuery;
-				} else if(mediaQuery) {
-					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
-				}
-				list.push(item);
-			}
-		}
-	};
-	return list;
-};
-
-
 /***/ })
 
-},[1051]);
+},[1094]);
 //# sourceMappingURL=styles.bundle.js.map

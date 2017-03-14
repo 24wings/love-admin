@@ -48,7 +48,7 @@ export class UserComponent implements OnInit {
   }
 
   refershTable() {
-    this.http.get(this.appConfig.serverIp + '/rest.player').subscribe(rtn => {
+    this.http.get(this.appConfig.serverIp + 'rest.player').subscribe(rtn => {
       const result = rtn.json();
       if (result.issuccess) {
         this.users = result.data;

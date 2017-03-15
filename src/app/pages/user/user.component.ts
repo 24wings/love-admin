@@ -32,7 +32,7 @@ export class UserComponent implements OnInit {
   }
 
   deleteUser(_id: String) {
-    this.http.delete(this.appConfig.serverIp + '/rest.player?_id=' + _id).subscribe(rtn => {
+    this.http.delete(this.appConfig.serverIp + 'rest.player?_id=' + _id).subscribe(rtn => {
       const result = rtn.json();
       if (result.issuccess) {
         this.refershTable();

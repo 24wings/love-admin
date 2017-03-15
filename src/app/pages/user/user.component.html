@@ -20,8 +20,8 @@
         </thead>
         <tr *ngFor="let user of users">
             <td>
-                <a (click)="goUserDetail(user._id)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                <a (click)="deleteUser(user._id)"><i class="fa fa-trash" ></i></a>
+                <a (click)="goUserDetail(user._id)">详情<i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                <a (click)="deleteUser(user._id)">删除<i class="fa fa-trash" ></i></a>
             </td>
             <td *ngFor="let field of fields;">
                 {{user[field.value]}}
